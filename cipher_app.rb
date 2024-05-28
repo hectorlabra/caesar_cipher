@@ -1,6 +1,14 @@
 def caesar_cipher(str, shift)
-  alphabet = ('a'..'z').to_a.join
-  puts alphabet.length
+  encrypted_str = str.chars.map do |char|
+    if char.match?(/[a-zA-Z]/)
+      base = char.downcase == char ? 'a' : 'A'
+      ((char.ord - base.ord + shift) % 26 + base.ord).chr
+    else
+      char
+    end
+  end.join
+
+  encrypted_str
 end
 
-caesar_cipher("hello", 5)
+puts caesar_cipher("Héctor Labra", 13)
